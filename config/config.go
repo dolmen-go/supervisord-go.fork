@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"maps"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -537,9 +538,7 @@ func parseEnvFiles(s string) *map[string]string {
 			}).Error("Parse env file failed: " + envFilePath)
 			continue
 		}
-		for k, v := range r {
-			result[k] = v
-		}
+		maps.Copy(result, r)
 	}
 	return &result
 }
