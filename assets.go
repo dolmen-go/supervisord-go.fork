@@ -238,4 +238,4 @@ func (z *zipFileInfo) Mode() os.FileMode {
 }
 func (z *zipFileInfo) ModTime() time.Time { return z.modTime }
 func (z *zipFileInfo) IsDir() bool        { return z.isDir }
-func (z *zipFileInfo) Sys() interface{}   { return nil }
+func (z *zipFileInfo) Sys() any           { return nil }

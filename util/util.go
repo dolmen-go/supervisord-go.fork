@@ -1,7 +1,7 @@
 package util
 
 // InArray returns true if the elem is in the array arr
-func InArray(elem interface{}, arr []interface{}) bool {
+func InArray(elem any, arr []any) bool {
 	for _, e := range arr {
 		if e == elem {
 			return true
@@ -11,7 +11,7 @@ func InArray(elem interface{}, arr []interface{}) bool {
 }
 
 // HasAllElements returns true if the array arr1 contains all elements of array arr2
-func HasAllElements(arr1 []interface{}, arr2 []interface{}) bool {
+func HasAllElements(arr1 []any, arr2 []any) bool {
 	for _, e2 := range arr2 {
 		if !InArray(e2, arr1) {
 			return false
@@ -21,8 +21,8 @@ func HasAllElements(arr1 []interface{}, arr2 []interface{}) bool {
 }
 
 // StringArrayToInterfacArray converts []string to []interface
-func StringArrayToInterfacArray(arr []string) []interface{} {
-	result := make([]interface{}, 0)
+func StringArrayToInterfacArray(arr []string) []any {
+	result := make([]any, 0)
 	for _, s := range arr {
 		result = append(result, s)
 	}

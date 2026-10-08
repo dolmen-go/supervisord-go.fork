@@ -89,7 +89,7 @@ func TestGetStringValueFromConfig(t *testing.T) {
 func TestGetEnvValueFromConfig(t *testing.T) {
 	config, _ := parse([]byte("[program:test]\na=A=\"env1\",B=env2"))
 	entry := config.GetProgram("test")
-	envs := make([]interface{}, 0)
+	envs := make([]any, 0)
 	for _, e := range entry.GetEnv("a") {
 		envs = append(envs, e)
 	}
@@ -99,7 +99,7 @@ func TestGetEnvValueFromConfig(t *testing.T) {
 
 	config, _ = parse([]byte("[program:test]\na=A=env1,B=\"env2\""))
 	entry = config.GetProgram("test")
-	envs = make([]interface{}, 0)
+	envs = make([]any, 0)
 	for _, e := range entry.GetEnv("a") {
 		envs = append(envs, e)
 	}
