@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -175,8 +174,8 @@ func TestConfigWithInclude(t *testing.T) {
 	// deleting everything in the system temp directory
 	dir := t.TempDir()
 
-	ioutil.WriteFile(filepath.Join(dir, "file1"), []byte("[program:cat]\ncommand=pwd\nA=abc\n[include]\nfiles=*.conf"), os.ModePerm)
-	ioutil.WriteFile(filepath.Join(dir, "file2.conf"), []byte("[program:ls]\ncommand=ls\n"), os.ModePerm)
+	os.WriteFile(filepath.Join(dir, "file1"), []byte("[program:cat]\ncommand=pwd\nA=abc\n[include]\nfiles=*.conf"), os.ModePerm)
+	os.WriteFile(filepath.Join(dir, "file2.conf"), []byte("[program:ls]\ncommand=ls\n"), os.ModePerm)
 
 	fmt.Println(filepath.Join(dir, "file1"))
 	config := NewConfig(filepath.Join(dir, "file1"))
