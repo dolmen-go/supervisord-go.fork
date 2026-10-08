@@ -115,8 +115,8 @@ func (z *zipFS) Open(name string) (http.File, error) {
 	}
 
 	// directory
-	if strings.HasSuffix(name, "/") {
-		dirKey := strings.TrimSuffix(name, "/") + "/"
+	if before, ok := strings.CutSuffix(name, "/"); ok {
+		dirKey := before + "/"
 		return &zipHTTPFile{isDir: true, name: dirKey, entries: z.dirEntries(dirKey)}, nil
 	}
 
