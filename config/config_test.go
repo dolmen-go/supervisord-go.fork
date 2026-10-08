@@ -6,9 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"testing"
-
-	"github.com/ochinchina/supervisord/util"
 )
 
 func createTmpFile() (string, error) {
@@ -93,7 +92,7 @@ func TestGetEnvValueFromConfig(t *testing.T) {
 	for _, e := range entry.GetEnv("a") {
 		envs = append(envs, e)
 	}
-	if len(envs) != 2 || !util.InArray("A=env1", envs) || !util.InArray("B=env2", envs) {
+	if len(envs) != 2 || !slices.Contains(envs, "A=env1") || !slices.Contains(envs, "B=env2") {
 		t.Error("Fail to get env value")
 	}
 
@@ -103,7 +102,7 @@ func TestGetEnvValueFromConfig(t *testing.T) {
 	for _, e := range entry.GetEnv("a") {
 		envs = append(envs, e)
 	}
-	if len(envs) != 2 || !util.InArray("A=env1", envs) || !util.InArray("B=env2", envs) {
+	if len(envs) != 2 || !slices.Contains(envs, "A=env1") || !slices.Contains(envs, "B=env2") {
 		t.Error("Fail to get env value")
 	}
 

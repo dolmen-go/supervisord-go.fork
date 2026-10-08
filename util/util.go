@@ -2,15 +2,10 @@ package util
 
 import "slices"
 
-// InArray returns true if the elem is in the array arr
-func InArray(elem any, arr []any) bool {
-	return slices.Contains(arr, elem)
-}
-
 // HasAllElements returns true if the array arr1 contains all elements of array arr2
 func HasAllElements(arr1 []any, arr2 []any) bool {
 	for _, e2 := range arr2 {
-		if !InArray(e2, arr1) {
+		if !slices.Contains(arr1, e2) {
 			return false
 		}
 	}
