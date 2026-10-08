@@ -82,13 +82,9 @@ func inProcessMap(procInfo *types.ProcessInfo, processesMap map[string]bool) boo
 		}
 
 		// check the wildcast '*'
-		before, after, ok := strings.Cut(procName, ":")
-		if ok {
-			groupName := before
-			programName := after
-			if programName == "*" && groupName == procInfo.Group {
-				return true
-			}
+		groupName, programName, ok := strings.Cut(procName, ":")
+		if ok && programName == "*" && groupName == procInfo.Group {
+			return true
 		}
 	}
 	return false
