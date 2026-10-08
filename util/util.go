@@ -1,13 +1,10 @@
 package util
 
+import "slices"
+
 // InArray returns true if the elem is in the array arr
 func InArray(elem any, arr []any) bool {
-	for _, e := range arr {
-		if e == elem {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(arr, elem)
 }
 
 // HasAllElements returns true if the array arr1 contains all elements of array arr2
@@ -52,13 +49,7 @@ func IsSameStringArray(arr1 []string, arr2 []string) bool {
 		return false
 	}
 	for _, s := range arr1 {
-		exist := false
-		for _, s2 := range arr2 {
-			if s2 == s {
-				exist = true
-				break
-			}
-		}
+		exist := slices.Contains(arr2, s)
 		if !exist {
 			return false
 		}

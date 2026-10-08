@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"regexp"
+	"slices"
 	"sort"
 	"strconv"
 	"strings"
@@ -88,12 +89,7 @@ func (c *Entry) GetPrograms() []string {
 }
 
 func (c *Entry) ContainProgram(program string) bool {
-	for _, p := range c.GetPrograms() {
-		if p == program {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(c.GetPrograms(), program)
 }
 
 // String dumps configuration as a string
